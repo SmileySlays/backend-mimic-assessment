@@ -49,8 +49,14 @@ import sys
 
 def mimic_dict(filename):
     """Returns mimic dict mapping each word to list of words which follow it."""
-    # +++your code here+++
-    raise NotImplementedError("Get to Work!")
+    mimic_dictionary = {}
+    with open(filename, 'r') as f:
+        f_split = f.read().split()
+    f_split.insert(0, "")
+    for word in range(len(f_split) - 1):
+        mimic_dictionary[f_split[word]] = mimic_dictionary.get(
+            f_split[word], list()) + [f_split[word + 1]]
+    return mimic_dictionary
 
 
 def print_mimic(mimic_dict, word):
@@ -61,8 +67,9 @@ def print_mimic(mimic_dict, word):
         - Randomly select a new seed word from this word list
         - Repeat this process 200 times
     """
-    # +++your code here+++
-    raise NotImplementedError("Get to Work!")
+    for number in range(200):
+        print(word)
+        word = random.choice(mimic_dict[word])
 
 
 # Provided main(), calls mimic_dict() and mimic()
